@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Train", "Train\Train.csproj", "{60686CCB-10AB-446E-B468-F05046A8E661}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Change List", "Change List\Change List.csproj", "{D9AE0EA5-B9CD-4790-A0B4-C3328D142121}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "House Party", "House Party\House Party.csproj", "{F6CC553C-11B1-4A38-971E-F9A6830D1047}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{60686CCB-10AB-446E-B468-F05046A8E661}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60686CCB-10AB-446E-B468-F05046A8E661}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60686CCB-10AB-446E-B468-F05046A8E661}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60686CCB-10AB-446E-B468-F05046A8E661}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9AE0EA5-B9CD-4790-A0B4-C3328D142121}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9AE0EA5-B9CD-4790-A0B4-C3328D142121}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9AE0EA5-B9CD-4790-A0B4-C3328D142121}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9AE0EA5-B9CD-4790-A0B4-C3328D142121}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6CC553C-11B1-4A38-971E-F9A6830D1047}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6CC553C-11B1-4A38-971E-F9A6830D1047}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6CC553C-11B1-4A38-971E-F9A6830D1047}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6CC553C-11B1-4A38-971E-F9A6830D1047}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9A6DC34A-40F9-4943-8AB2-8230D04F644D}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Odd Lines", "Odd Lines\Odd Lines.csproj", "{236DAEBF-1926-4CD6-B46A-BFEBF268A953}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Line Numbers", "Line Numbers\Line Numbers.csproj", "{E6938D1D-5FD8-4277-879F-2A7C64D6899C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Word Count", "Word Count\Word Count.csproj", "{4FA1DA4A-0910-42A5-A0CB-2E80D97BD5D1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Merge Text Files", "Merge Text Files\Merge Text Files.csproj", "{C7442F36-E534-466A-B583-92AD85D5C3FC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Extract Special Bytes", "Extract Special Bytes\Extract Special Bytes.csproj", "{9CAFFB44-97A6-41A9-A6AA-D4BBC152B7A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Folder Size", "Folder Size\Folder Size.csproj", "{265BDE2D-F7EB-45A8-A5BA-B0234A30A763}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Split, Merge Binary Files", "Split, Merge Binary Files\Split, Merge Binary Files.csproj", "{82DD56AD-156E-431F-8859-C36DDCBB09DD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{236DAEBF-1926-4CD6-B46A-BFEBF268A953}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{236DAEBF-1926-4CD6-B46A-BFEBF268A953}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{236DAEBF-1926-4CD6-B46A-BFEBF268A953}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{236DAEBF-1926-4CD6-B46A-BFEBF268A953}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6938D1D-5FD8-4277-879F-2A7C64D6899C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6938D1D-5FD8-4277-879F-2A7C64D6899C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6938D1D-5FD8-4277-879F-2A7C64D6899C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6938D1D-5FD8-4277-879F-2A7C64D6899C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FA1DA4A-0910-42A5-A0CB-2E80D97BD5D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FA1DA4A-0910-42A5-A0CB-2E80D97BD5D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FA1DA4A-0910-42A5-A0CB-2E80D97BD5D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FA1DA4A-0910-42A5-A0CB-2E80D97BD5D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7442F36-E534-466A-B583-92AD85D5C3FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7442F36-E534-466A-B583-92AD85D5C3FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7442F36-E534-466A-B583-92AD85D5C3FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7442F36-E534-466A-B583-92AD85D5C3FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CAFFB44-97A6-41A9-A6AA-D4BBC152B7A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CAFFB44-97A6-41A9-A6AA-D4BBC152B7A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CAFFB44-97A6-41A9-A6AA-D4BBC152B7A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CAFFB44-97A6-41A9-A6AA-D4BBC152B7A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{265BDE2D-F7EB-45A8-A5BA-B0234A30A763}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{265BDE2D-F7EB-45A8-A5BA-B0234A30A763}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{265BDE2D-F7EB-45A8-A5BA-B0234A30A763}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{265BDE2D-F7EB-45A8-A5BA-B0234A30A763}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82DD56AD-156E-431F-8859-C36DDCBB09DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82DD56AD-156E-431F-8859-C36DDCBB09DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82DD56AD-156E-431F-8859-C36DDCBB09DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82DD56AD-156E-431F-8859-C36DDCBB09DD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {36E751B1-0A82-48F5-BF66-55E5CE53031B}
+	EndGlobalSection
+EndGlobal
