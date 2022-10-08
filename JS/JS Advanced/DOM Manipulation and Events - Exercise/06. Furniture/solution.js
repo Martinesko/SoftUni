@@ -14,15 +14,24 @@ function solve() {
 
     let sellButton = document.getElementsByTagName('button')[1];
     sellButton.addEventListener('click',function () {
-        let outputTextBox = document.getElementsByTagName('textarea')[1];
         let bought = [];
         for (const product of Array.from(list.children)) {
             if (product.getElementsByTagName("input")[0].checked == true){
-                bought.push(product);
+                let info = product.querySelectorAll('p');
+                let name = info[0].textContent;
+                let price = info[1].textContent;
+                let decFactor = info[2].textContent;
+                bought.push({
+                         name: name,
+                         price : price,
+                        decFactor : decFactor
+                }
+                );
             }
         }
+            let outputTextBox = document.getElementsByTagName('textarea')[1];
             outputTextBox.value = `{Bought furniture: ${bought.map(e => e.name(", "))}`;
-            outputTextBox.value = `\nTotal price ${Bought.reduce((total, current) => total + current.price, 0).toFixed(2)}`;
-            outputTextBox.value = `\nAverage decoration factor: ${Bought.reduce((total, current) => total + current.decFactor, 0) / Bought.length}`;
+            outputTextBox.value += `\nTotal price ${bought.reduce((total, current) => total + current.price, 0).toFixed(2)}`;
+            outputTextBox.value += `\nAverage decoration factor: ${bought.reduce((total, current) => total + current.decFactor, 0) / Bought.length}`;
     })
 }
