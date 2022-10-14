@@ -10,8 +10,7 @@ function solve() {
         if(recipientName.value ===''||title.value === ''|| message.value === ''){
             return;
         }
-        e.preventDefault();
-
+        e.preventDefault();//nebrarai 4e nema da baca
         let _recipientName = recipientName.value;
         let _title = title.value;
         let _message = message.value;
