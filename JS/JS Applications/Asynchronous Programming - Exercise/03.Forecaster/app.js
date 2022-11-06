@@ -1,38 +1,91 @@
 function attachEvents() {
 let submit = document.getElementById('submit');
-submit.addEventListener("click", getWeather())
+let location = document.getElementById('location').value;
+submit.addEventListener("click", async ()=>{
+ debugger;
+    let locationsUrl = `http://localhost:3030/jsonstore/forecaster/locations`;
 
-}
-async function getWeather(){
-    const url = `http://localhost:3030/jsonstore/forecaster/locations`;
-    let location = document.getElementById('location').value;
-    let response = await fetch(url);
-    const date = await response.json();
-    const info = date.find(x=>x.name === location);
+    let locationsResponse = await fetch(locationsUrl);
+    let locationsData = await locationsResponse.json();
+    let locationCode = locationsData.find(x=>x.name === location).code;
 
-     createWeather(info.code);
-     upcomingWeather(info.code);
-}
-async function createWeather(code){
-    const url = `http://localhost:3030/jsonstore/forecaster/today/${code}`;
-    let location = document.getElementById('location').value;
-    let response = await fetch(url);
-    let date = await response.json();
-    let currentElement = document.getElementById('current');
-    let span = document.createElement('span');
-    span.innerHTML = `</span><span class = "forecast-data">${location}</span><span>${date.low}°/${date.high}°</span><span>${date.condition}</span>`;
-    currentElement.appendChild(span);
-}
-async function upcomingWeather(code){
-    const url = `http://localhost:3030/jsonstore/forecaster/upcoming/${code}`;
-    let location = document.getElementById('location').value;
-    let response = await fetch(url);
-    let date = await response.json();
-    let upcomingElement = document.getElementById('upcoming');
-    Object.entries(date).forEach(([low,high,condition])=>{
-        let span = document.createElement('span');
-        span.innerHTML = `<span class = "forecast-data">${location}</span><span>${date.low}°/${date.high}°</span><span>${date.condition}</span>`;
-        upcomingElement.appendChild(span);
-    })
+    let currentUrl = `http://localhost:3030/jsonstore/forecaster/today/${locationCode}`;
+    let currentResponse = await fetch(currentUrl);
+    let currentData = await currentResponse.json();
+
+    let currentSymbolSpan = document.createElement('span');
+    let currentConditionSpan = document.createElement('span');
+    let forecasts = document.createElement('div');
+    let current = document.getElementById('current');
+
+    currentSymbolSpan.setAttribute('class', 'condition symbol');
+    currentConditionSpan.setAttribute('class','condition');
+    forecasts.setAttribute('class','forecasts');
+    let symbol = '';
+    switch (currentData.forecast.condition) {
+            case "Sunny":
+            symbol = "☀";
+            break;
+
+            case "Partly sunny":
+            symbol = '⛅';
+            break;
+
+            case "Overcast":
+            symbol ="☁";
+            break;
+
+            case "Rain":
+                symbol = "☂";
+            break;
+    }
+
+
+    currentSymbolSpan.textContent = symbol;
+    currentConditionSpan.innerHTML = `<span class="forecast-data">${currentData.name}</span><span class="forecast-data">${currentData.forecast.low}°/${currentData.forecast.high}°</span><span class="forecast-data">${currentData.forecast.condition}</span>`;
+
+    forecasts.appendChild(currentSymbolSpan);
+    forecasts.appendChild(currentConditionSpan);
+    current.appendChild(forecasts);
+    document.getElementById('forecast').style.display = 'block';
+
+    let upcomingUrl = `http://localhost:3030/jsonstore/forecaster/upcoming/${locationCode}`;
+    let upcomingResponse = await fetch(upcomingUrl);
+    let upcomingData = await upcomingResponse.json();
+
+    let forecastInfo = document.createElement('div');
+    forecastInfo.setAttribute('class','forecast-info');
+
+    for (const dayData of upcomingData.forecast) {
+
+        let upcomingSpan = document.createElement('span');
+
+        upcomingSpan.setAttribute('class','upcoming');
+
+        let symbol = '';
+        switch (dayData.condition) {
+            case "Sunny":
+                symbol = "☀";
+                break;
+
+            case "Partly sunny":
+                symbol = '⛅';
+                break;
+
+            case "Overcast":
+                symbol ="☁";
+                break;
+
+            case "Rain":
+                symbol = "☂";
+                break;
+        }
+
+        upcomingSpan.innerHTML = `<span class = "symbol">${symbol}</span><span class="forecast-data">${dayData.low}°/${dayData.high}°</span><span class="forecast-data">${dayData.condition}</span>`;
+        forecastInfo.appendChild(upcomingSpan);
+    }
+    document.getElementById('upcoming').appendChild(forecastInfo);
+})
+
 }
 attachEvents()
