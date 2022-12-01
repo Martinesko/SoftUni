@@ -1,7 +1,6 @@
 import {html} from "/node_modules/lit-html/lit-html.js";
 
-
-const homeTemplate = html`
+const homeTemplate = () => html`
     <section id="home">
         <img
                 src="./images/pngkey.com-hunting-png-6697165-removebg-preview.png"
@@ -11,4 +10,8 @@ const homeTemplate = html`
         <h3>The right place for a new career start!</h3>
     </section>
 `
+
+export function showHome(ctx){
+    ctx.render(homeTemplate());
+}
 
