@@ -13,8 +13,8 @@ namespace SoftUni
         {
             using (var context = new SoftUniContext())
             {
-                Console.WriteLine(GetEmployeesWithSalaryOver50000(context));
-            }                 
+                Console.WriteLine(GetEmployeesFromResearchAndDevelopment(context));
+            }
         }
         public static string GetEmployeesFullInformation(SoftUniContext context)
         {
@@ -25,10 +25,10 @@ namespace SoftUni
                 output.AppendLine($"{employee.FirstName} {employee.LastName} {employee.MiddleName} {employee.JobTitle} {employee.Salary:f2}");
             }
             return output.ToString();
-        } 
+        }
         public static string GetEmployeesWithSalaryOver50000(SoftUniContext context)
         {
-            var Employees = context.Employees.Where(x=>x.Salary>50000).ToList().OrderBy(e => e.FirstName);
+            var Employees = context.Employees.Where(x => x.Salary>50000).ToList().OrderBy(e => e.FirstName);
             StringBuilder output = new StringBuilder();
             foreach (var employee in Employees)
             {
@@ -38,13 +38,17 @@ namespace SoftUni
         }
         public static string GetEmployeesFromResearchAndDevelopment(SoftUniContext context)
         {
-            var Employees = context.Employees.Where(x=>x.Salary>50000).ToList().OrderBy(e => e.FirstName);
+            var Employees = context.Employees
+                .Where(x => x.Department.Name == "Research and Development")
+                .OrderBy(e => e.Salary)
+                .ThenByDescending(e=>e.FirstName)
+                .ToList();
             StringBuilder output = new StringBuilder();
             foreach (var employee in Employees)
             {
-                output.AppendLine($"{employee.FirstName} - {employee.Salary:f2}");
+                output.AppendLine($"{employee.FirstName} {employee.LastName} from {employee.Department.Name} - {employee.Salary:f2}");
             }
-            return output.ToString();
+            return output.ToString().Trim();
         }
     }
 }
