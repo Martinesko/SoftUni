@@ -4,6 +4,8 @@ using SoftUni.Models;
 using SoftUni.Data;
 using System.Text;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using System.Net.Sockets;
+using System.Reflection;
 
 namespace SoftUni
 {
@@ -13,7 +15,7 @@ namespace SoftUni
         {
             using (var context = new SoftUniContext())
             {
-                Console.WriteLine(GetEmployeesFromResearchAndDevelopment(context));
+                Console.WriteLine(AddNewAddressToEmployee(context));
             }
         }
         public static string GetEmployeesFullInformation(SoftUniContext context)
@@ -49,6 +51,17 @@ namespace SoftUni
                 output.AppendLine($"{employee.FirstName} {employee.LastName} from {employee.Department.Name} - {employee.Salary:f2}");
             }
             return output.ToString().Trim();
+        }public static string AddNewAddressToEmployee(SoftUniContext context)
+        {
+            Address address = new Address { AddressText = "Vitoshka 15", TownId = 4 };
+            context.Addresses.Add(address);
+
+            context.Employees.First(x => x.LastName=="Nakov").Address = address;
+
+            context.SaveChanges();
+
+            var result = context.Employees.OrderByDescending(x => x.AddressId).Take(10).Select(x => x.Address.AddressText).ToList();
+            return String.Join(Environment.NewLine, result);
         }
     }
 }
