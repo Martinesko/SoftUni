@@ -18,7 +18,7 @@
 
             var context = new BookShopContext();
             DbInitializer.ResetDatabase(context);
-            Console.WriteLine(GetBooksReleasedBefore(context,Console.ReadLine()));
+            Console.WriteLine(GetTotalProfitByCategory(context));
         }
         public static string GetBooksByAgeRestriction(BookShopContext context, string command)
         {
@@ -61,6 +61,41 @@
             
 
             return string.Join(Environment.NewLine,output);
+        }
+        public static string GetAuthorNamesEndingIn(BookShopContext context, string input)
+        {
+            var output = context.Authors.Where(a => a.FirstName.EndsWith(input)).OrderBy(a => a.FirstName).ThenBy(a=>a.LastName).Select(a => $"{a.FirstName} {a.LastName}").ToList();
+        return string.Join(Environment.NewLine, output);
+        }
+        public static string GetBookTitlesContaining(BookShopContext context, string input)
+        {
+            var output = context.Books.Where(b => b.Title.ToLower().Contains(input.ToLower())).OrderBy(b=>b.Title).Select(b => b.Title).ToList();
+
+            return string.Join(Environment.NewLine, output);
+        }
+        public static string GetBooksByAuthor(BookShopContext context, string input)
+        {
+            var output = context.Books.Where(b => b.Author.LastName.ToLower().StartsWith(input.ToLower())).OrderBy(b => b.BookId).Select(b=>$"{b.Title} ({b.Author.FirstName} {b.Author.LastName})").ToList();
+
+            return string.Join(Environment.NewLine, output);
+        }
+        public static int CountBooks(BookShopContext context, int lengthCheck)
+        {
+            var output = context.Books.Where(b => b.Title.Length>lengthCheck).Count();
+
+            return output;
+        }
+        public static string CountCopiesByAuthor(BookShopContext context)
+        {
+            var output = context.Authors.OrderByDescending(a=> a.Books.Sum(b => b.Copies)).Select(a => $"{a.FirstName} {a.LastName} - {a.Books.Sum(b => b.Copies)}");
+
+            return string.Join(Environment.NewLine, output);
+        }
+        public static string GetTotalProfitByCategory(BookShopContext context)
+        {
+            var output = context.Categories.OrderByDescending(c=> c.CategoryBooks.Sum(b => b.Book.Price * b.Book.Copies)).Select(c => $"{c.Name} ${c.CategoryBooks.Sum(b => b.Book.Price * b.Book.Copies):f2}").ToList();
+
+            return string.Join( Environment.NewLine, output);
         }
 
     }
