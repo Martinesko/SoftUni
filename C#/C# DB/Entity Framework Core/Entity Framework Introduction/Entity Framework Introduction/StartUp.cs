@@ -15,7 +15,7 @@ namespace SoftUni
         {
             using (var context = new SoftUniContext())
             {
-                Console.WriteLine(AddNewAddressToEmployee(context));
+                Console.WriteLine(GetEmployeesInPeriod(context));
             }
         }
         public static string GetEmployeesFullInformation(SoftUniContext context)
@@ -51,7 +51,8 @@ namespace SoftUni
                 output.AppendLine($"{employee.FirstName} {employee.LastName} from {employee.Department.Name} - {employee.Salary:f2}");
             }
             return output.ToString().Trim();
-        }public static string AddNewAddressToEmployee(SoftUniContext context)
+        }
+        public static string AddNewAddressToEmployee(SoftUniContext context)
         {
             Address address = new Address { AddressText = "Vitoshka 15", TownId = 4 };
             context.Addresses.Add(address);
@@ -62,6 +63,32 @@ namespace SoftUni
 
             var result = context.Employees.OrderByDescending(x => x.AddressId).Take(10).Select(x => x.Address.AddressText).ToList();
             return String.Join(Environment.NewLine, result);
+        }
+        public static string GetEmployeesInPeriod(SoftUniContext context)
+        {
+            var employees = context.Employees.Take(10).ToList();
+
+            StringBuilder output = new StringBuilder();
+            foreach (var employee in employees)
+            {
+                output.AppendLine($"{employee.FirstName} {employee.LastName} - Manager: {employee.Manager.FirstName} {employee.Manager.LastName}");
+                var projects = employee.Projects;
+                foreach (var project in projects)
+                {
+                    if (project.StartDate.Year >= 2001 && project.StartDate.Year <= 2003)
+                    {
+                        if (project.EndDate != null)
+                        {
+                            output.AppendLine($"--<{project.Name}> - <{project.StartDate.ToString("M/d/yyyy h:mm:ss tt")}> - <{project.EndDate.Value.ToString("M/d/yyyy h:mm:ss tt")}>");
+                        }
+                        else
+                        {
+                            output.AppendLine($"--<{project.Name}> - <{project.StartDate.ToString("M/d/yyyy h:mm:ss tt")}> - <not finished>");
+                        }
+                    }
+                }
+            }
+            return output.ToString().Trim();
         }
     }
 }

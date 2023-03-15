@@ -30,5 +30,7 @@ namespace SoftUni.Models
         public virtual ICollection<Employee> InverseManager { get; set; }
 
         public virtual ICollection<Project> Projects { get; set; }
+
+        public virtual ICollection<EmployeeProject> EmployeesProjects { get; set; }
     }
 }
