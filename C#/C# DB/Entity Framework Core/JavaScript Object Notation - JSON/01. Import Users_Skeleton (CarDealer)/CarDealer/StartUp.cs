@@ -16,7 +16,7 @@ namespace CarDealer
             CarDealerContext context = new CarDealerContext();
             string stringJson = File.ReadAllText("../../../Datasets/sales.json");
 
-            Console.WriteLine(GetCarsWithTheirListOfParts(context));
+            Console.WriteLine(GetTotalSalesByCustomer(context));
         }
         //Import
         public static string ImportSuppliers(CarDealerContext context, string inputJson)
@@ -127,7 +127,25 @@ namespace CarDealer
         }
         public static string GetTotalSalesByCustomer(CarDealerContext context)
         {
+            var customers = context
+                .Customers
+                .Include(c => c.Sales)
+                .ThenInclude(s => s.Car)
+                .ThenInclude(c => c.PartsCars)
+                .ThenInclude(pc => pc.Part)
+                .Where(c => c.Sales.Any(s => s.CarId != null))
+                .Select(c => new
+                {
+                    fullName = c.Name,
+                    boughtCars = c.Sales.Count(s => s.CarId != null),
+                    spentMoney = c.Sales.Sum(s => s.Car.PartsCars.Sum(pc => pc.Part.Price))
+                })
+                .OrderByDescending(c => c.spentMoney)
+                .ThenByDescending(c => c.boughtCars)
+                .ToArray();
 
+
+            return JsonConvert.SerializeObject(customers, Formatting.Indented);
         }
     }
 }   
